@@ -1,0 +1,19 @@
+using UnityEngine;
+
+public class MenuCursor : MonoBehaviour
+{
+public CameraFollow cameraFollow;
+public void CloseMenu(){
+Cursor.lockState=CursorLockMode.Locked;
+Cursor.visible=false;
+cameraFollow.canLook=true;
+
+
+
+} 
+
+
+// عند حمزه السعيد الماوس مكنش بيظهر ف عملت سكربت يخليه يظهر لما اللاعب يقرب من اللفافه
+
+
+  }
