@@ -1,0 +1,50 @@
+using UnityEngine;
+using System.Collections;
+
+public class KeyPickup : MonoBehaviour
+{
+    public GameObject levelUnlockedPanel;
+    public LevelManager levelManager;
+
+    private bool canTakeKey = false;
+    private bool collected = false;
+
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            canTakeKey = true;
+        }
+    }
+
+    void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            canTakeKey = false;
+        }
+    }
+
+    void Update()
+    {
+        if (canTakeKey && !collected && Input.GetMouseButtonDown(0))
+        {
+            collected = true;
+
+            Debug.Log("Key Taken");
+
+            levelUnlockedPanel.SetActive(true);
+
+            StartCoroutine(ReturnToMenu());
+        }
+    }
+
+    IEnumerator ReturnToMenu()
+    {
+        yield return new WaitForSeconds(2f);
+
+        levelManager.CompleteLevel1();
+
+        Destroy(gameObject);
+    }
+}
