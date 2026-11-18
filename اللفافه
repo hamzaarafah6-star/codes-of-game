@@ -1,0 +1,15 @@
+using UnityEngine;
+
+public class scroll : MonoBehaviour
+{
+    public GameObject panel;
+public CameraFollow cameraFollow;
+    void OnTriggerStay(Collider other)
+    {
+        if (other.CompareTag("Player") && Input.GetMouseButtonDown(0))
+            panel.SetActive(true);
+            Cursor.lockState=CursorLockMode.None;
+            Cursor.visible=true;
+            cameraFollow.canLook=false;
+    }
+}
