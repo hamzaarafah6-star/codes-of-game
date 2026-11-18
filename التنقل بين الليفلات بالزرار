@@ -1,0 +1,64 @@
+using UnityEngine;
+using UnityEngine.SceneManagement;
+
+public class LevelManager : MonoBehaviour
+{
+    public GameObject level2Button;
+    public GameObject startPanel;
+    public GameObject levelsPanel;
+// الكود اللي لما مثلا اتك على ليفل 3 تظهر السين بتاعته
+    void Start()
+    {
+     
+        if (level2Button != null)
+        {
+            level2Button.SetActive(
+                PlayerPrefs.GetInt("Level2Unlocked", 0) == 1
+            );
+        }
+
+        if (PlayerPrefs.GetInt("ReturnToLevels", 0) == 1)
+        {
+            PlayerPrefs.SetInt("ReturnToLevels", 0);
+            PlayerPrefs.Save();
+
+            startPanel.SetActive(false);
+            levelsPanel.SetActive(true);
+        }
+    }
+
+    public void CompleteLevel1()
+    {
+        PlayerPrefs.SetInt("Level2Unlocked", 1);
+        PlayerPrefs.SetInt("ReturnToLevels", 1);
+        PlayerPrefs.Save();
+
+        SceneManager.LoadScene("Menu");
+    }
+
+    public void OpenLevel1()
+    {
+        SceneManager.LoadScene("Hamza_Task");
+    }
+
+    public void OpenLevel2()
+    {
+        SceneManager.LoadScene("Level2");
+    }
+ public void OpenLevel3()
+    {
+        SceneManager.LoadScene("Level3");
+    }
+
+    public void OpenLevel4()
+    {
+        SceneManager.LoadScene("Level4");
+    }
+
+
+
+
+
+
+
+}
